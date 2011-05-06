@@ -4,5 +4,7 @@
 *.bak
 *.log.lck
 
-/sites/default/settings.php
-/sites/default/files/*
+sites/default/settings.php
+sites/default/files
+sites/default/tmp
+sites/default/private
