@@ -1,0 +1,56 @@
+
+name = Abstract
+description = Fusion Starter sub-theme for Drupal 6.
+base theme = fusion_core
+core = 6.x
+engine = phptemplate
+
+stylesheets[all][] = css/fusion-starter-style.css
+stylesheets[all][] = css/default.css
+
+
+
+regions[sidebar_last] = sidebar last
+regions[header_top] = header top
+regions[header] = header
+regions[preface_top] = preface top
+regions[preface_bottom] = preface bottom
+regions[content_top] = content top
+regions[content] = content
+regions[content_bottom] = content bottom
+regions[postscript_top] = postscript top
+regions[postscript_bottom] = postscript bottom
+regions[footer] = footer
+regions[node_bottom] = node bottom
+
+features[] = logo
+features[] = name
+features[] = slogan
+features[] = node_user_picture
+features[] = comment_user_picture
+features[] = search
+features[] = favicon
+features[] = primary_links
+features[] = secondary_links
+
+; Default theme settings
+settings[base-font-size] = font-size-12
+settings[sidebar_first_width] = 3
+settings[sidebar_last_width] = 4
+
+; Inherit Skinr styles from fusion core
+skinr[options][inherit_skins] = true
+
+; Starter styles
+skinr[starter-general-styles][title] = Starter - General Styles
+skinr[starter-general-styles][type] = checkboxes
+skinr[starter-general-styles][features][] = block
+skinr[starter-general-styles][features][] = panel-pane
+skinr[starter-general-styles][options][1][label] = List with bottom border
+skinr[starter-general-styles][options][1][class] = list-bottom-border
+; Information added by drupal.org packaging script on 2011-04-09
+version = "6.x-1.0-alpha1"
+core = "6.x"
+project = "abstract"
+datestamp = "1302341214"
+
