@@ -1,0 +1,3 @@
+<?php
+
+include_once('amor_tipos_contenido.features.inc');
