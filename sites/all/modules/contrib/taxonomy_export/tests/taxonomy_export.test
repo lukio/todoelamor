@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * Test the basic functionality of the taxonomy_export module.
+ */
+class TaxonomyExportTests extends DrupalWebTestCase {
+
+  function __construct() {
+    parent::__construct();
+  }
+
+  /**
+   * Clean out the testing environment.
+   **/
+  function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * Clean out the testing environment.
+   **/
+  function tearDown() {
+    parent::tearDown();
+  }
+
+  /**
+   * Implementation of the DrupalTestCase "get_info" method.
+   **/
+  function getInfo() {
+    return array(
+      'name' => t('Taxonomy Export Tests'),
+      'description' => t('Test the basic functionality of the taxonomy_export module.'),
+      'group' => 'Taxonomy Export'
+    );
+  }
+
+  /**
+   * Basic tests of the taxonomy_export module.
+   **/
+  function testTaxonomyExport() {
+    // TODO: Write some tests.
+  }
+
+  // TODO: Test, Creation of new vocabulary, ensure {taxonomy_export} and {taxonomy_export_macine_names} get 1 correct record.
+  // TODO: Test, Update the new vocab. ensure {taxonomy_export} and {taxonomy_export_macine_names} get the correct updates, without any extra junk being created.
+  // TODO: Test, Create feature using new vocab.  Ensure feature is cool.
+  // TODO: Test, Enable feature with new vocab, ensure all records are accounted for.
+  // TODO: Test, Disable feature, ensure dependant vocab + terms can be removed.
+}
