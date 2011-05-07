@@ -1,0 +1,8 @@
+core = "6.x"
+description = "amor_imagecache_presets"
+features[imagecache][] = "nodo"
+features[imagecache][] = "thumbnail"
+name = "amor_imagecache_presets"
+package = "Features"
+project = "amor_imagecache_presets"
+version = "6.x-1.0"
