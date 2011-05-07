@@ -1,0 +1,3 @@
+<?php
+
+include_once('gcoop_pages_default.features.inc');
