@@ -1,0 +1,3 @@
+<?php
+
+include_once('amor_secciones_view.features.inc');
