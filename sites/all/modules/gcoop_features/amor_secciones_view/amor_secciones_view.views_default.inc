@@ -86,6 +86,94 @@ function amor_secciones_view_views_default_views() {
       'field' => 'field_foto_fid',
       'relationship' => 'none',
     ),
+    'phpcode' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '[phpcode]',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'value' => '<?php
+//$node = node_load($data->nid);
+//$url = url( "node/".$data->nid, array("absolute"=>"true"));
+global $base_url;
+$url = $base_url."/node/".$data->nid;
+?>
+<a target="_blank" href="http://twitter.com/home?status=<?php print "Me gustó {$data->node_title} en todo el amor ! - $url"; ?>" title="Compartir en Twitter">twitter</a>
+',
+      'exclude' => 0,
+      'id' => 'phpcode',
+      'table' => 'customfield',
+      'field' => 'phpcode',
+      'relationship' => 'none',
+    ),
+    'phpcode_1' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'value' => '<?php 
+$node = node_load($data->nid);
+$url = url( $node->path, array("absolute"=>"true"));
+$image = url($node->field_foto[\'0\'][\'filepath\'], array("absolute"=>"true")); 
+
+?>
+<a name="fb_share" type="icon_link" 
+     share_url="<?php print $url; ?>" target="_blank">&nbsp;</a> 
+
+   <?php
+   global $base_url;
+    if ($image <> $base_url."/")
+     {
+        print "<link rel=\'image_src\' href=$image />";
+     }
+    ?>
+
+   <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
+           type="text/javascript">
+
+   </script>
+',
+      'exclude' => 0,
+      'id' => 'phpcode_1',
+      'table' => 'customfield',
+      'field' => 'phpcode',
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('sorts', array(
     'created' => array(
@@ -193,6 +281,14 @@ function amor_secciones_view_views_default_views() {
     'columns' => '3',
     'alignment' => 'horizontal',
     'fill_single_line' => 1,
+  ));
+  $handler->override_option('row_options', array(
+    'inline' => array(
+      'phpcode' => 'phpcode',
+      'phpcode_1' => 'phpcode_1',
+    ),
+    'separator' => ' ',
+    'hide_empty' => 0,
   ));
   $handler = $view->new_display('feed', 'Feeds', 'feed_1');
   $handler->override_option('style_plugin', 'rss');
