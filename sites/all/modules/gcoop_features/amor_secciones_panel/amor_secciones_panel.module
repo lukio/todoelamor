@@ -1,0 +1,3 @@
+<?php
+
+include_once('amor_secciones_panel.features.inc');
