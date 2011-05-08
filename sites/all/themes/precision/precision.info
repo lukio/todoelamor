@@ -4,8 +4,11 @@ description = Base theme suitable for Panels Everywhere.
 core = 6.x
 engine = phptemplate
 
-stylesheets[all][] = css/reset.css
+; stylesheets[all][] = css/reset.css
 stylesheets[all][] = css/precision.css
+stylesheets[all][] = css/default.css
+stylesheets[all][] = css/typography.css
+stylesheets[all][] = css/style.css
 
 plugins[panels][layouts] = plugins/layouts
 plugins[panels][styles] = plugins/styles

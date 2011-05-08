@@ -1,0 +1,15 @@
+.views-fluid-grid img{
+	padding-top:9px;
+	padding-bottom:3px;
+}
+
+li.views-fluid-grid-item {
+    overflow: hidden;
+    padding: 3px;
+    vertical-align: top;
+    background-color: transparent;
+    background-image: none;
+    border: 0;
+    color: #A06750;
+    list-style-type: none;
+}
