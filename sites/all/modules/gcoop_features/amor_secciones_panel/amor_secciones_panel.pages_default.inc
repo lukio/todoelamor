@@ -38,12 +38,17 @@ function amor_secciones_panel_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display;
-  $display->layout = 'onecol';
+  $display->layout = 'precision_column_one';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'middle' => NULL,
+      'header_alpha' => NULL,
+      'header_beta' => NULL,
+      'main' => NULL,
+      'footer_alpha' => NULL,
+      'footer_beta' => NULL,
     ),
   );
   $display->cache = array();
@@ -52,7 +57,7 @@ function amor_secciones_panel_default_page_manager_handlers() {
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
-    $pane->panel = 'middle';
+    $pane->panel = 'main';
     $pane->type = 'views';
     $pane->subtype = 'secciones';
     $pane->shown = TRUE;
@@ -78,13 +83,25 @@ function amor_secciones_panel_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
-      'settings' => NULL,
+      'settings' => array(
+        'id' => '',
+        'class' => '',
+        'grid' => '38',
+        'prefix' => '1',
+        'suffix' => '1',
+        'pad' => '',
+        'push' => '',
+        'pull' => '',
+        'alpha' => 0,
+        'omega' => 0,
+      ),
+      'style' => 'precision_grid',
     );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
+    $display->panels['main'][0] = 'new-1';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-1';
   $handler->conf['display'] = $display;

@@ -275,12 +275,21 @@ $image = url($node->field_foto[\'0\'][\'filepath\'], array("absolute"=>"true"));
   $handler->override_option('empty_format', '2');
   $handler->override_option('use_ajax', TRUE);
   $handler->override_option('use_pager', 'mini');
-  $handler->override_option('style_plugin', 'grid');
+  $handler->override_option('style_plugin', 'fluid_grid');
   $handler->override_option('style_options', array(
     'grouping' => '',
-    'columns' => '3',
-    'alignment' => 'horizontal',
-    'fill_single_line' => 1,
+    'advanced_layout' => array(
+      'align' => TRUE,
+      'margins' => TRUE,
+    ),
+    'items_width' => '',
+    'items_height' => '',
+    'list_alignment' => 'justify',
+    'items_alignment' => 'justify',
+    'items_h_margin' => '2px',
+    'items_v_margin' => '2px',
+    'box_shadow' => '0',
+    'border_radius' => '0',
   ));
   $handler->override_option('row_options', array(
     'inline' => array(
