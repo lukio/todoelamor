@@ -73,7 +73,7 @@ function amor_secciones_view_views_default_views() {
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'none',
-      'format' => 'thumbnail_default',
+      'format' => 'thumbnail__colorbox',
       'multiple' => array(
         'group' => TRUE,
         'multiple_number' => '',
