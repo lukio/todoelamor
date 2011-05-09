@@ -1,0 +1,3 @@
+<?php
+
+include_once('amor_destacado.features.inc');
