@@ -227,33 +227,26 @@ html body.layout-first-main-last, body.layout-first-main-last div.full-width{
 }*/
 
 
-/* Top */
-
-#top {
-	width: 100%;
-	position: relative;
-}
-
 /* TPrimary links */
 
-#top #menu, #primary-menu {
+#menu, .links-primary {
 	width: 484px;
 	margin-left: -14px;
 	overflow: hidden;
 	position: relative;
 }
 
-#top #menu ul, #primary-menu ul {
+#menu ul, .links-primary ul {
 	padding: 0;
 	font-size: 18px;
 	text-transform: lowercase;
 }
 
-#top #menu li, #primary-menu li {
+#menu li, .links-primary li {
 	display: inline;
 }
 
-#top #menu li a, #primary-menu li a {
+#menu li a, .links-primary li a {
 	display: block;
 	float: left;
 	line-height: 20px;
@@ -262,18 +255,21 @@ html body.layout-first-main-last, body.layout-first-main-last div.full-width{
 	display: inline; /* fix ie6 margin problem */
 }
 
-#top #menu li a:hover, #primary-menu li a:hover {
-	background: url(../images/bg_footer.jpg);
+#menu li a:hover, .links-primary li a:hover {
+	border-top: #75D5B9 8px solid;
 	color: #75D5B9;
+  display: inline;
+  padding-bottom: 0px;
+  padding-top: 42px;
 }
 
-#primary-menu .sf-menu a, #primary-menu .sf-menu a:visited{
-  color:#3DA09B;
+.links-primary .sf-menu a, .links-primary .sf-menu a:visited{
+ color:#3DA09B;
 }
 
 /* Top (menu > current page) */
 
-#top #menu li.current_page_item a, #primary-menu li a.active {
+#menu li.current_page_item a, .links-primary li a.active {
 	border-top: #ADCB56 8px solid;
 	padding: 42px 1px 14px 1px;
 	margin: 0 12px;
@@ -281,7 +277,7 @@ html body.layout-first-main-last, body.layout-first-main-last div.full-width{
 	color: #ADCB56;
 }
 
-#top #menu li.current_page_item a:hover, #primary-menu li a.active:hover {
+#menu li.current_page_item a:hover, .links-primary li a.active:hover {
 	background: none;
 	color: #C0D67E;
 }
