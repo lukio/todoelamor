@@ -17,7 +17,7 @@ function amor_secciones_default_taxonomy_export() {
   'description' => '',
   'help' => '',
   'relations' => '1',
-  'hierarchy' => '1',
+  'hierarchy' => '0',
   'multiple' => '0',
   'required' => '1',
   'tags' => '0',
@@ -51,6 +51,17 @@ function amor_secciones_default_taxonomy_export() {
   ),
 ),
     2 => (object) array(
+  'tid' => '4',
+  'vid' => '1',
+  'name' => 'lanas',
+  'description' => '',
+  'weight' => '0',
+  'depth' => 0,
+  'parents' => array(
+    0 => '0',
+  ),
+),
+    3 => (object) array(
   'tid' => '3',
   'vid' => '1',
   'name' => 'ponchos',
