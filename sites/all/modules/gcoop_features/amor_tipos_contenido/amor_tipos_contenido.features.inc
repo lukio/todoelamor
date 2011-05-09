@@ -15,6 +15,17 @@ function amor_tipos_contenido_ctools_plugin_api() {
  */
 function amor_tipos_contenido_node_info() {
   $items = array(
+    'destacado' => array(
+      'name' => t('Destacado Inicio'),
+      'module' => 'features',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Titulo'),
+      'has_body' => '0',
+      'body_label' => '',
+      'min_word_count' => '0',
+      'help' => '',
+    ),
     'pagina' => array(
       'name' => t('Pagina'),
       'module' => 'features',
