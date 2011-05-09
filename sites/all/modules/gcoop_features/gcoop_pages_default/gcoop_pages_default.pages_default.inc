@@ -14,7 +14,7 @@ function gcoop_pages_default_default_page_manager_handlers() {
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Template con precision',
+    'title' => 'Site Default Con Precision',
     'no_blocks' => 1,
     'css_id' => '',
     'css' => '',
@@ -150,6 +150,7 @@ function gcoop_pages_default_default_page_manager_handlers() {
     );
     $pane->cache = array();
     $pane->style = array(
+      'style' => 'default',
       'settings' => NULL,
     );
     $pane->css = array();
