@@ -1,0 +1,210 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Adds Facebook's "Like" button to each selected node type.
+ * Adds a block with a global static value where users can "Like" the URL set by admins.
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function fblikebutton_menu() {
+  $items['admin/settings/fblikebutton'] = array(
+    'title' => 'FB Like Button',
+    'description' => 'Configure Facebook <em>Like</em> button settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('fblikebutton_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'fblikebutton.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implementation of hook_nodeapi().
+ * @todo
+ * Add more config options for like button (size, etc).
+ */
+function fblikebutton_nodeapi(&$node, $op, $teaser, $page) {
+  global $user, $base_url;
+  $likebase = $base_url . '/';
+  $likepath = drupal_get_path_alias($_GET['q']);
+  $webpage_to_like = $likebase . $likepath;
+  switch ($op) {
+    case 'view':
+      // Set which node types users can "like".
+      $types_to_like = variable_get('fblikebutton_node_types', array('page'));
+      $show_faces = variable_get('fblikebutton_show_faces', 'true');
+      $colorscheme = variable_get('fblikebutton_color_scheme', 'light');
+      $layout = variable_get('fblikebutton_layout', 'standard');
+      $action = variable_get('fblikebutton_action', 'like');
+      $font = variable_get('fblikebutton_font', 'arial');
+      // Facebook is doing away with FBML, so we use the iframe plugin option instead.
+      $likebutton = '<iframe src="https://www.facebook.com/plugins/like.php?href=';
+      $likebutton .= urlencode($webpage_to_like);
+      $likebutton .= '&amp;layout=';
+      $likebutton .= $layout;
+      $likebutton .= '&amp;show_faces=';
+      $likebutton .= $show_faces;
+      $likebutton .= '&amp;width=450&amp;action=';
+      $likebutton .= $action;
+      $likebutton .= '&amp;font=';
+      $likebutton .= $font;
+      $likebutton .= '&amp;colorscheme=';
+      $likebutton .= $colorscheme;
+      $likebutton .= '&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>';
+      // Keep the fblikebutton button out of search results, etc.
+      if (!$page) {
+        break;
+      }
+      // Do not add the like button to any of the unchecked node types.
+      if (!in_array($node->type, $types_to_like, TRUE)) {
+        break;
+      }
+      // Set permissions, and keep the button out of teasers. Otherwise, there
+      // would be 50 "like" buttons on the front page of some sites... Not good.
+      if (!$teaser && user_access('users may access Like button')) {
+        $node->content['fblikebutton_button'] = array(
+            '#value' => $likebutton,
+            '#weight' => 100,
+        );
+      }
+      break;
+  }
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function fblikebutton_perm() {
+  return array('users may administer Like button', 'users may administer Like button block', 'users may access Like button');
+}
+
+/**
+ * Implementation of hook_block().
+ */
+function fblikebutton_block($op = 'list', $delta = 0, $edit = array()) {
+  switch ($op) {
+    case 'list':
+      $blocks[0]['info'] = t('FB Like Button');
+      $blocks[0]['cache'] = BLOCK_NO_CACHE;
+      return $blocks;
+
+    case 'configure':
+      global $base_url;
+      $form = array();
+        if ($delta == 0 && user_access('users may administer Like button block')) {
+          $form['fblikebutton_block_url'] = array(
+            '#title' => t('Homepage URL'),
+            '#type' => 'textfield',
+            '#default_value' => check_url(variable_get('fblikebutton_block_url', $base_url)),
+            '#description' => t('URL of your homepage to like'),
+          );
+          $form['block'] = array(
+            '#type' => 'fieldset',
+            '#collapsible' => false,
+            '#collapsed' => false,
+            '#title' => t('Options'),
+            '#description' => '',
+          );
+          $form['block']['fblikebutton_bl_layout'] = array(
+            '#type' => 'select',
+            '#title' => t('Layout style'),
+            '#options' => array('standard' => t('Standard'), 'box_count' => t('Box Count'), 'button_count' => t('Button Count')),
+            '#default_value' => variable_get('fblikebutton_bl_layout', 'standard'),
+            '#description' => t('Determines the size and amount of social context next to the button'),
+          );
+          $form['block']['fblikebutton_bl_show_faces'] = array(
+            '#type' => 'select',
+            '#title' => t('Display faces in the box'),
+            '#options' => array('show' => t('Show faces'), 'hide' => t('Do not show faces')),
+            '#default_value' => variable_get('fblikebutton_bl_show_faces', 'show'),
+            '#description' => t('Show profile pictures below the button (ignored if <em>Layout style</em> is set to anything other than <em>Standard</em>)'),
+          );
+          $form['block']['fblikebutton_bl_action'] = array(
+            '#type' => 'select',
+            '#title' => t('Verb to display'),
+            '#options' => array('like' => t('Like'), 'recommend' => t('Recommend')),
+            '#default_value' => variable_get('fblikebutton_bl_action', 'like'),
+            '#description' => t('The verbiage to display inside the button itself'),
+          );
+          $form['block']['fblikebutton_bl_font'] = array(
+	          '#type' => 'select',
+	          '#title' => t('Font'),
+	          '#options' => array(
+              'arial' => 'Arial',
+	            'lucida+grande' => 'Lucida Grande',
+	            'segoe+ui' => 'Segoe UI',
+	            'tahoma' => 'Tahoma',
+	            'trebuchet+ms' => 'Trebuchet MS',
+	            'verdana' => 'Verdana'
+            ),
+	          '#default_value' => variable_get('fblikebutton_bl_font', 'arial'),
+	          '#description' => t('The font used to display the button'),
+          );
+          $form['block']['fblikebutton_bl_color_scheme'] = array(
+	          '#type' => 'select',
+	          '#title' => t('Color scheme'),
+	          '#options' => array('light' => t('Light'), 'dark' => t('Dark')),
+	          '#default_value' => variable_get('fblikebutton_bl_color_scheme', 'light'),
+	          '#description' => t('The color scheme of box environtment'),
+          );
+        }
+      return $form;
+
+    case 'save':
+      if ($delta == 0) {
+        variable_set('fblikebutton_bl_layout', $edit['fblikebutton_bl_layout']);
+        variable_set('fblikebutton_bl_layout', $edit['fblikebutton_bl_layout']);
+        variable_set('fblikebutton_bl_show_faces', $edit['fblikebutton_bl_show_faces']);
+        variable_set('fblikebutton_bl_action', $edit['fblikebutton_bl_action']);
+        variable_set('fblikebutton_bl_font', $edit['fblikebutton_bl_font']);
+        variable_set('fblikebutton_bl_color_scheme', $edit['fblikebutton_bl_color_scheme']);
+      }
+      break;
+
+    case 'view':
+      global $base_url;
+      $addr = variable_get('fblikebutton_block_url', $base_url);
+      $conf = array(
+        'layout' => variable_get('fblikebutton_bl_layout', "standard"),
+        'action' => variable_get('fblikebutton_bl_action', "like"),
+        'color_scheme' => variable_get('fblikebutton_bl_color_scheme', "light"),
+        'show_faces' => variable_get('fblikebutton_bl_show_faces', "false"),
+        'font' => variable_get('fblikebutton_bl_font', "arial"),
+      );
+      if (user_access('users may access Like button')) {
+        $block['subject'] = t('');
+        $block['content'] = _fblikebutton_field($addr, $conf);
+        return $block;
+      }
+  }
+}
+
+function _fblikebutton_field($addr, $conf) {
+  $addr = urlencode($addr);
+  $width = "100%";
+  $layout = $conf['layout'];
+  $action = $conf['action'];
+  $colorscheme = $conf['color_scheme'];
+  $show_faces = $conf['show_faces'];
+  $font = $conf['font'];
+  switch ($layout) {
+    case "box_count":
+	  $height = 65;
+    case "button_count":
+      $height = 21;
+    case "standard":
+    default:
+      $height = $show_faces == "false" ? 35 : 80;
+  }
+  $height = 22;
+  
+  $params = "href=$addr&layout=$layout&show_faces=false&width&font=$font&height=$height&action=$action&colorscheme=$colorscheme";
+  $src = htmlentities($params);
+  $output = "<iframe src=\"https://www.facebook.com/plugins/like.php?{$src}\" scrolling=\"no\" frameborder=\"0\" style=\"border: none; overflow: hidden; width: {$width}; height: {$height}px;\" allowTransparency=\"true\"></iframe>";
+  return $output;
+}

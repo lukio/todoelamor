@@ -13,3 +13,37 @@ li.views-fluid-grid-item {
     color: #A06750;
     list-style-type: none;
 }
+.views_slideshow_singleframe_previous,
+.views_slideshow_singleframe_next {
+  width:15px;
+  height:0px;
+  padding-top:15px;
+  position:absolute;
+  top:50%;
+  overflow:hidden;
+}
+.views_slideshow_singleframe_previous {
+  background:url('../images/scroll_left.png');
+  left:0px;
+}
+.views_slideshow_singleframe_next {
+  background:url('../images/scroll_right.png');
+  right:0px;
+}
+.views_slideshow_singleframe_pause {
+  display:none;
+}
+
+.view-secciones .views-field-phpcode {
+  float: left;
+}
+.view-secciones .views-field-phpcode-2 {
+  float: left;
+  width: 50%;
+}
+.view-secciones .share-twitter img {
+  margin-top: -15px;
+}
+#secciones h2 {
+  text-transform: uppercase;
+}
