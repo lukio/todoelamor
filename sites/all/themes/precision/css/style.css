@@ -47,3 +47,35 @@ li.views-fluid-grid-item {
 #secciones h2 {
   text-transform: uppercase;
 }
+
+/*
+.imagecache-thumbnail {
+  border: 1px solid gray;
+}
+*/
+.views-field-field-foto-fid a:hover {
+  background: none repeat scroll 0 0 #F343aa;
+  border: 0 none;
+}
+.page-nav {
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+
+#footer {
+  border-top: 1px solid #CCCCCC;
+  clear: both;
+  color: #999999;
+  font-size: 10px;
+  margin-top: 30px;
+}
+.footer-texto {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.footer-redes-sociales {
+  margin-top: 5px;
+  /*margin-left: 10px;*/
+}
