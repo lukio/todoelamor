@@ -8,3 +8,6 @@ sites/default/settings.php
 sites/default/files
 sites/default/tmp
 sites/default/private
+cache/*
+/tags
+/wp-content
