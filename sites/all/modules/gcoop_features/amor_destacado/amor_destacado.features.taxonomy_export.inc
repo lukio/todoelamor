@@ -29,39 +29,6 @@ function amor_destacado_default_taxonomy_export() {
 );
   $taxonomy_export->terms = array(
     0 => (object) array(
-  'tid' => '8',
-  'vid' => '2',
-  'name' => 'bloque centro',
-  'description' => '',
-  'weight' => '0',
-  'depth' => 0,
-  'parents' => array(
-    0 => '0',
-  ),
-),
-    1 => (object) array(
-  'tid' => '7',
-  'vid' => '2',
-  'name' => 'bloque derecha',
-  'description' => '',
-  'weight' => '0',
-  'depth' => 0,
-  'parents' => array(
-    0 => '0',
-  ),
-),
-    2 => (object) array(
-  'tid' => '6',
-  'vid' => '2',
-  'name' => 'bloque izquierda',
-  'description' => '',
-  'weight' => '0',
-  'depth' => 0,
-  'parents' => array(
-    0 => '0',
-  ),
-),
-    3 => (object) array(
   'tid' => '5',
   'vid' => '2',
   'name' => 'slideshow',

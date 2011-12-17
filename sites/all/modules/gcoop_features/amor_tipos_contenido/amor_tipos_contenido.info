@@ -1,6 +1,8 @@
 core = "6.x"
+dependencies[] = "amor_imagecache_presets"
 dependencies[] = "content_taxonomy_options"
 dependencies[] = "features"
+dependencies[] = "imagecache"
 dependencies[] = "imagefield"
 dependencies[] = "strongarm"
 description = "amor_tipos_contenido"

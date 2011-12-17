@@ -123,20 +123,21 @@ function amor_tipos_contenido_content_default_fields() {
     'field_name' => 'field_foto',
     'type_name' => 'producto',
     'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
+      'weight' => '-3',
+      'parent' => '',
+      '4' => array(
+        'format' => 'nodo_default',
         'exclude' => 0,
       ),
+      'label' => array(
+        'format' => 'hidden',
+      ),
       'teaser' => array(
-        'format' => 'image_plain',
+        'format' => 'nodo_default',
         'exclude' => 0,
       ),
       'full' => array(
-        'format' => 'image_plain',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'image_plain',
+        'format' => 'nodo_default',
         'exclude' => 0,
       ),
       'token' => array(
@@ -183,19 +184,19 @@ function amor_tipos_contenido_content_default_fields() {
     'display_settings' => array(
       'weight' => '-4',
       'parent' => '',
+      '4' => array(
+        'format' => 'link',
+        'exclude' => 0,
+      ),
       'label' => array(
         'format' => 'hidden',
       ),
       'teaser' => array(
-        'format' => 'link',
+        'format' => 'hidden',
         'exclude' => 0,
       ),
       'full' => array(
-        'format' => 'link',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
+        'format' => 'hidden',
         'exclude' => 0,
       ),
       'token' => array(

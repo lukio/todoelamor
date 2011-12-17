@@ -5,6 +5,7 @@
  */
 function amor_secciones_panel_default_page_manager_handlers() {
   $export = array();
+
   $handler = new stdClass;
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
@@ -86,14 +87,14 @@ function amor_secciones_panel_default_page_manager_handlers() {
       'settings' => array(
         'id' => '',
         'class' => '',
-        'grid' => '38',
-        'prefix' => '1',
-        'suffix' => '1',
+        'grid' => '48',
+        'prefix' => '',
+        'suffix' => '',
         'pad' => '',
         'push' => '',
         'pull' => '',
-        'alpha' => 0,
-        'omega' => 0,
+        'alpha' => 1,
+        'omega' => 1,
       ),
       'style' => 'precision_grid',
     );
@@ -105,7 +106,7 @@ function amor_secciones_panel_default_page_manager_handlers() {
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-1';
   $handler->conf['display'] = $display;
-
   $export['term_view_panel_context'] = $handler;
+
   return $export;
 }

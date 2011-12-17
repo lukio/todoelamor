@@ -86,43 +86,6 @@ function amor_secciones_view_views_default_views() {
       'field' => 'field_foto_fid',
       'relationship' => 'none',
     ),
-    'phpcode' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '[phpcode]',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'value' => '<?php
-//$node = node_load($data->nid);
-//$url = url( "node/".$data->nid, array("absolute"=>"true"));
-global $base_url;
-$url = $base_url."/node/".$data->nid;
-?>
-<a target="_blank" href="http://twitter.com/home?status=<?php print "Me gustó {$data->node_title} en todo el amor ! - $url"; ?>" title="Compartir en Twitter">twitter</a>
-',
-      'exclude' => 0,
-      'id' => 'phpcode',
-      'table' => 'customfield',
-      'field' => 'phpcode',
-      'relationship' => 'none',
-    ),
     'phpcode_1' => array(
       'label' => '',
       'alter' => array(
@@ -168,8 +131,89 @@ $image = url($node->field_foto[\'0\'][\'filepath\'], array("absolute"=>"true"));
 
    </script>
 ',
-      'exclude' => 0,
+      'exclude' => 1,
       'id' => 'phpcode_1',
+      'table' => 'customfield',
+      'field' => 'phpcode',
+      'relationship' => 'none',
+    ),
+    'phpcode' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '[phpcode]',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'value' => '<?php
+//$node = node_load($data->nid);
+//$url = url( "node/".$data->nid, array("absolute"=>"true"));
+global $base_url;
+$url = $base_url."/node/".$data->nid;
+?>
+<a class="share-twitter" target="_blank" href="http://twitter.com/home?status=<?php print "Me gustó {$data->node_title} en todo el amor ! - $url"; ?>" title="Compartir en Twitter"><img src=\'<?php print "$base_url/sites/all/themes/precision/images/twitter.png"  ?>\' /></a>
+',
+      'exclude' => 0,
+      'id' => 'phpcode',
+      'table' => 'customfield',
+      'field' => 'phpcode',
+      'relationship' => 'none',
+    ),
+    'phpcode_2' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'value' => '<?php
+module_load_include(\'module\', \'fblikebutton\', \'fblikebutton\');
+$url = url("node/{$data->nid}", array("absolute"=>"true"));
+
+$addr = variable_get(\'fblikebutton_block_url\', $url);
+$conf = array(
+  \'layout\' => variable_get(\'fblikebutton_bl_layout\', "button_count"),
+  \'action\' => variable_get(\'fblikebutton_bl_action\', "like"),
+  \'color_scheme\' => variable_get(\'fblikebutton_bl_color_scheme\', "light"),
+  \'show_faces\' => variable_get(\'fblikebutton_bl_show_faces\', "false"),
+  \'font\' => variable_get(\'fblikebutton_bl_font\', "Trebuchet MS"),
+);
+print _fblikebutton_field($addr, $conf);
+?>
+',
+      'exclude' => 0,
+      'id' => 'phpcode_2',
       'table' => 'customfield',
       'field' => 'phpcode',
       'relationship' => 'none',
@@ -177,7 +221,7 @@ $image = url($node->field_foto[\'0\'][\'filepath\'], array("absolute"=>"true"));
   ));
   $handler->override_option('sorts', array(
     'created' => array(
-      'order' => 'ASC',
+      'order' => 'DESC',
       'granularity' => 'second',
       'id' => 'created',
       'table' => 'node',
@@ -270,34 +314,37 @@ $image = url($node->field_foto[\'0\'][\'filepath\'], array("absolute"=>"true"));
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
-  $handler->override_option('title', 'Sección %1');
+  $handler->override_option('title', '%1');
+  $handler->override_option('header_format', '2');
+  $handler->override_option('header_empty', 0);
   $handler->override_option('empty', '<h3>No existen productos en esta seccion</h3>');
   $handler->override_option('empty_format', '2');
   $handler->override_option('use_ajax', TRUE);
+  $handler->override_option('items_per_page', 0);
   $handler->override_option('use_pager', 'mini');
   $handler->override_option('style_plugin', 'fluid_grid');
   $handler->override_option('style_options', array(
     'grouping' => '',
     'advanced_layout' => array(
       'align' => TRUE,
-      'margins' => TRUE,
     ),
-    'items_width' => '',
+    'items_width' => '200',
     'items_height' => '',
     'list_alignment' => 'justify',
-    'items_alignment' => 'justify',
-    'items_h_margin' => '2px',
-    'items_v_margin' => '2px',
+    'items_alignment' => '',
+    'items_h_margin' => '',
+    'items_v_margin' => '',
     'box_shadow' => '0',
     'border_radius' => '0',
   ));
   $handler->override_option('row_options', array(
     'inline' => array(
-      'phpcode' => 'phpcode',
+      'phpcode_2' => 'phpcode_2',
       'phpcode_1' => 'phpcode_1',
+      'phpcode' => 'phpcode',
     ),
-    'separator' => ' ',
-    'hide_empty' => 0,
+    'separator' => '&nbsp;',
+    'hide_empty' => 1,
   ));
   $handler = $view->new_display('feed', 'Feeds', 'feed_1');
   $handler->override_option('style_plugin', 'rss');
@@ -310,7 +357,7 @@ $image = url($node->field_foto[\'0\'][\'filepath\'], array("absolute"=>"true"));
     'relationship' => 'none',
     'item_length' => 'default',
   ));
-  $handler->override_option('path', 'secciones/%/rss.xml');
+  $handler->override_option('path', 'secciones/%/feed');
   $handler->override_option('menu', array(
     'type' => 'none',
     'title' => '',

@@ -403,7 +403,7 @@ function amor_destacado_views_default_views() {
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'none',
-      'format' => 'image_plain',
+      'format' => 'slideshow_default',
       'multiple' => array(
         'group' => TRUE,
         'multiple_number' => '',
@@ -428,6 +428,20 @@ function amor_destacado_views_default_views() {
     ),
   ));
   $handler->override_option('filters', array(
+    'promote' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'promote',
+      'table' => 'node',
+      'field' => 'promote',
+      'relationship' => 'none',
+    ),
     'status' => array(
       'operator' => '=',
       'value' => '1',
@@ -482,7 +496,7 @@ function amor_destacado_views_default_views() {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
-  $handler->override_option('items_per_page', 3);
+  $handler->override_option('items_per_page', 1);
   $handler->override_option('style_plugin', 'slideshow');
   $handler->override_option('style_options', array(
     'type' => 'ul',
@@ -502,14 +516,14 @@ function amor_destacado_views_default_views() {
       'amount_allowed_visible' => '',
       'remember_slide' => 0,
       'remember_slide_days' => '1',
-      'controls' => '2',
+      'controls' => '0',
       'pager' => '0',
       'pager_type' => 'Numbered',
       'pager_hover' => '2',
       'pager_click_to_page' => 0,
       'image_count' => '0',
       'items_per_slide' => '1',
-      'effect' => 'fade',
+      'effect' => 'scrollLeft',
       'sync' => '1',
       'nowrap' => '0',
       'advanced' => '',
